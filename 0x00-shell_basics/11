@@ -1,3 +1,0 @@
-#!/bin/bash back
-ls-al . .. /boot back
-ls-al . ../boot back
