@@ -1,34 +1,19 @@
-0x19. Postmortem
+![images (5)](https://github.com/anwulika-1/alx-system_engineering-devops/assets/111018929/d23bc861-d2ef-4279-84ca-1d56e3e4b497)
+![images (6)](https://github.com/anwulika-1/alx-system_engineering-devops/assets/111018929/c4b57282-67e6-4ce0-b5fd-507a5198d675)
+https://medium.com/@anwulikahappinex/issue-summary-78bb8e90dcbd
+Issue Summary
+From 10:30 PM to 8:30 AM, Company B experienced an outage on Cloud B that affected www.companyB.com due to a prescheduled reboot that ended in failure. The points of failure are coming from the rebooting of the load balancer or cache server. The Security Team issued a maintenance update and a reboot notification to a major Cloud B server on May 2, 2023 for a window of 5hours (10:30 to 3:30 AM). 
 
+Timeline (all times in Pacific Time)
+9:30 PM: Reboot begins
+10:30 PM: Outage begins
+11:26 PM: Alerts sent to teams
+12:30 AM: Lead SRE silenced all subsequent alerts due to server behavior being “normal”
+1:30 AM: Server down and customers can’t reach the site
 
-Tasks
+Root Cause
+At 5:26 AM, the reboot of the load-balancer or cache server continued to fail. The secondary server did not come back up for for 3 hours. We did not expect the scheduled reboot to affect our systems. 
 
-Using one of the web stack debugging project issue or an outage you have personally face, write a postmortem. Most of you will never have faced an outage, so just get creative and invent your own :)
-
-Requirements:
-
-Issue Summary (that is often what executives will read) must contain:
-duration of the outage with start and end times (including timezone)
-what was the impact (what service was down/slow? What were user experiencing? How many % of the users were affected?)
-what was the root cause
-Timeline (format bullet point, format: time - keep it short, 1 or 2 sentences) must contain:
-
-when was the issue detected
-how was the issue detected (monitoring alert, an engineer noticed something, a customer complained…)
-actions taken (what parts of the system were investigated, what were the assumption on the root cause of the issue)
-misleading investigation/debugging paths that were taken
-which team/individuals was the incident escalated to
-how the incident was resolved
-Root cause and resolution must contain:
-
-explain in detail what was causing the issue
-explain in detail how the issue was fixed
-Corrective and preventative measures must contain:
-
-what are the things that can be improved/fixed (broadly speaking)
-a list of tasks to address the issue (be very specific, like a TODO, example: patch Nginx server, add monitoring on server memory…)
-Be brief and straight to the point, between 400 to 600 words
-
-While postmortem format can vary, stick to this one so that you can get properly reviewed by your peers.
-
-Please, remember that these blogs must be written in English to further your technical ability in a variety of settings.
+Corrective and Preventative Measures
+In the last 3 days, we’ve made an internal review and analysis of the outage. The following measures are actions the team will follow for prevention and to improve response times in the future.
+The database server provider during the performance degradation could have alerted teams the down server . It was updated to their systems to prevent further issues in the future are done accordingly.
